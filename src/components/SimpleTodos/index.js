@@ -86,28 +86,82 @@ class SimpleTodos extends Component {
   onClickAdd = () => {
     const {todoInputValue, finalTodosList} = this.state
     if (todoInputValue.trim() !== '') {
-      // Split the input value by space
-      const [title, numberOfTodos] = todoInputValue.split(' ')
-      const num = parseInt(numberOfTodos, 10)
+      const parts = todoInputValue.trim().split(' ')
+      const numberOfTodos = parseInt(parts.pop(), 10) // Remove last element (the number)
+      const title = parts.join(' ') // Join the remaining parts as the base title
 
-      // Create multiple todos with the same title
-      const newTodos = []
-      for (let i = 0; i < num; i += 1) {
+      if (Number.isNaN(numberOfTodos)) {
+        // If no number is found, treat it as a single todo item
         const newTodo = {
-          id: finalTodosList.length + i + 1,
+          id: finalTodosList.length + 1,
           title,
           isCompleted: false,
           isEditing: false,
         }
-        newTodos.push(newTodo)
-      }
+        this.setState(prevState => ({
+          finalTodosList: [...prevState.finalTodosList, newTodo],
+          todoInputValue: '', // Clear the input
+        }))
+      } else {
+        // If a valid number is found, create that many todos with the same title
+        const newTodos = []
+        for (let i = 0; i < numberOfTodos; i += 1) {
+          const newTodo = {
+            id: finalTodosList.length + i + 1,
+            title,
+            isCompleted: false,
+            isEditing: false,
+          }
+          newTodos.push(newTodo)
+        }
 
-      this.setState(prevState => ({
-        finalTodosList: [...prevState.finalTodosList, ...newTodos],
-        todoInputValue: '',
-      }))
+        this.setState(prevState => ({
+          finalTodosList: [...prevState.finalTodosList, ...newTodos],
+          todoInputValue: '', // Clear the input
+        }))
+      }
     }
   }
+
+  // onClickAdd = () => {
+  //   const {todoInputValue, finalTodosList} = this.state
+  //   if (todoInputValue.trim() !== '') {
+  //     // Split the input value by space to extract title and number
+  //     const [title, numberOfTodos] = todoInputValue.split(' ')
+  //     const num = parseInt(numberOfTodos, 10)
+
+  //     // If the number is not valid (NaN), don't create multiple todos
+  //     if (isNaN(num)) {
+  //       const newTodo = {
+  //         id: finalTodosList.length + 1,
+  //         title: todoInputValue,
+  //         isCompleted: false,
+  //         isEditing: false,
+  //       }
+  //       this.setState(prevState => ({
+  //         finalTodosList: [...prevState.finalTodosList, newTodo],
+  //         todoInputValue: '',
+  //       }))
+  //     } else {
+  //       // Create multiple todos with the same title
+  //       const newTodos = []
+  //       for (let i = 0; i < num; i++) {
+  //         const newTodo = {
+  //           id: finalTodosList.length + i + 1,
+  //           title,
+  //           isCompleted: false,
+  //           isEditing: false,
+  //         }
+  //         newTodos.push(newTodo)
+  //       }
+
+  //       this.setState(prevState => ({
+  //         finalTodosList: [...prevState.finalTodosList, ...newTodos],
+  //         todoInputValue: '',
+  //       }))
+  //     }
+  //   }
+  // }
 
   render() {
     const {finalTodosList, todoInputValue} = this.state

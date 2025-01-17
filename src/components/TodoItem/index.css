@@ -1,0 +1,19 @@
+/* Write your CSS here */
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+
+.deleteBtn {
+  background-color: transparent;
+  border-radius: 10px;
+  width: 130px;
+  height: 30px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ff0b37;
+  color: #ff0b37;
+}

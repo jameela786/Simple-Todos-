@@ -1,0 +1,26 @@
+/* Write your CSS here */
+.bg_container {
+  background-color: #ffc2a0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 15px;
+}
+.main_head {
+  color: #ff8542;
+  font-weight: bold;
+  font-size: 42px;
+  text-align: center;
+}

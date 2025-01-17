@@ -16,4 +16,35 @@
   border-width: 2px;
   border-color: #ff0b37;
   color: #ff0b37;
+  margin-left: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.itemContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.completeCheckbox {
+  margin-right: 10px;
+}
+
+.editBtn {
+  background-color: transparent;
+  border-radius: 10px;
+  width: 130px;
+  height: 30px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0bb2ff;
+  color: #0b7dff;
+}
+
+.editInput {
+  margin-right: 10px;
 }
